@@ -1,3 +1,5 @@
+import { Router } from '@angular/router';
+import { PostService } from './../../post.service';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, Validators } from '@angular/forms';
 
@@ -41,10 +43,15 @@ export class CreateComponent implements OnInit {
   }
 
   createPost(): void {
-    console.log(this.post.value);
+    this.postService.createArticle(this.post.value).subscribe(() => {
+      this.router.navigateByUrl('/');
+    })
   }
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private postService: PostService,
+    private router: Router) { }
 
   ngOnInit(): void {
   }
