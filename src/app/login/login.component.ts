@@ -14,8 +14,8 @@ import { throwError } from 'rxjs';
 export class LoginComponent implements OnInit {
 
   user: UserLoginInfo = {
-    email: '',
-    password: '',
+    email: 'demo@miniasp.com',
+    password: '123456',
   }
 
   constructor(private router: Router, private loginService: LoginService) { }
