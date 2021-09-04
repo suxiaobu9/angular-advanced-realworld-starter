@@ -11,6 +11,9 @@
               formControlName="title"
             />
           </fieldset>
+          <ul *ngIf="title.dirty && title.invalid">
+            <li *ngIf="title.errors.required">Title is required</li>
+          </ul>
           <fieldset class="form-group">
             <textarea
               class="form-control"
@@ -27,6 +30,13 @@
               formControlName="body"
             ></textarea>
           </fieldset>
+          <ul *ngIf="body.dirty && body.invalid">
+            <li *ngIf="body.errors.required">Body is required</li>
+            <li *ngIf="body.errors.minlength">
+              Body must longer than
+              {{ body.errors.minlength.requiredLength }} chars
+            </li>
+          </ul>
           <fieldset class="form-group">
             <input
               class="form-control"
@@ -46,7 +56,11 @@
               </span>
             </div>
           </fieldset>
-          <button type="submit" class="btn btn-lg btn-primary pull-xs-right">
+          <button
+            type="submit"
+            class="btn btn-lg btn-primary pull-xs-right"
+            [disabled]="post.invalid"
+          >
             Create Post
           </button>
         </form>
